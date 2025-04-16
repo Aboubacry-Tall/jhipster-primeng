@@ -1,0 +1,63 @@
+{
+  "annotations": {
+    "changelogDate": "20250416115611"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "url",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "siteName",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "description",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "category",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "autoDiscovered",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "faviconUrl",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "active",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "createdDate",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "lastFetchedDate",
+      "fieldType": "Instant"
+    }
+  ],
+  "name": "Feed",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityName": "article",
+      "otherEntityRelationshipName": "feed",
+      "relationshipName": "article",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceImpl"
+}

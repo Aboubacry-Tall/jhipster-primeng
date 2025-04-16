@@ -1,0 +1,38 @@
+entity Feed {
+    name String required
+    url String required
+    siteName String
+    description String
+    category String
+    autoDiscovered Boolean
+    faviconUrl String
+    active Boolean
+    createdDate Instant
+    lastFetchedDate Instant
+}
+
+entity Article {
+    title String required
+    link String required
+    content TextBlob
+    summary TextBlob
+    author String
+    publishedDate Instant
+    read Boolean
+    favorited Boolean
+    tags String
+    coverImageUrl String
+    views Integer
+}
+
+entity Folder {
+    name String required
+    order Integer
+}
+
+relationship OneToMany {
+    Feed to Article
+}
+
+service * with serviceImpl
+paginate Feed, Article, Folder with pagination

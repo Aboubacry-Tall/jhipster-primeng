@@ -1,0 +1,196 @@
+<div>
+  <h2 id="page-heading" data-cy="ArticleHeading">
+    <span jhiTranslate="webrssApp.article.home.title">Articles</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [animation]="isLoading ? 'spin' : undefined"></fa-icon>
+        <span jhiTranslate="webrssApp.article.home.refreshListLabel">Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-article"
+        [routerLink]="['/article/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="webrssApp.article.home.createLabel">Create a new Article</span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  @if (articles().length === 0) {
+    <div class="alert alert-warning" id="no-result">
+      <span jhiTranslate="webrssApp.article.home.notFound">No Articles found</span>
+    </div>
+  } @else {
+    <div class="table-responsive table-entities" id="entities">
+      <table class="table table-striped" aria-describedby="page-heading">
+        <thead>
+          <tr jhiSort [(sortState)]="sortState" (sortChange)="navigateToWithComponentValues($event)">
+            <th scope="col" jhiSortBy="id">
+              <div class="d-flex">
+                <span jhiTranslate="global.field.id">ID</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="title">
+              <div class="d-flex">
+                <span jhiTranslate="webrssApp.article.title">Title</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="link">
+              <div class="d-flex">
+                <span jhiTranslate="webrssApp.article.link">Link</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="content">
+              <div class="d-flex">
+                <span jhiTranslate="webrssApp.article.content">Content</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="summary">
+              <div class="d-flex">
+                <span jhiTranslate="webrssApp.article.summary">Summary</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="author">
+              <div class="d-flex">
+                <span jhiTranslate="webrssApp.article.author">Author</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="publishedDate">
+              <div class="d-flex">
+                <span jhiTranslate="webrssApp.article.publishedDate">Published Date</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="read">
+              <div class="d-flex">
+                <span jhiTranslate="webrssApp.article.read">Read</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="favorited">
+              <div class="d-flex">
+                <span jhiTranslate="webrssApp.article.favorited">Favorited</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="tags">
+              <div class="d-flex">
+                <span jhiTranslate="webrssApp.article.tags">Tags</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="coverImageUrl">
+              <div class="d-flex">
+                <span jhiTranslate="webrssApp.article.coverImageUrl">Cover Image Url</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="views">
+              <div class="d-flex">
+                <span jhiTranslate="webrssApp.article.views">Views</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="feed.id">
+              <div class="d-flex">
+                <span jhiTranslate="webrssApp.article.feed">Feed</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (article of articles(); track trackId(article)) {
+            <tr data-cy="entityTable">
+              <td>
+                <a [routerLink]="['/article', article.id, 'view']">{{ article.id }}</a>
+              </td>
+              <td>{{ article.title }}</td>
+              <td>{{ article.link }}</td>
+              <td>{{ article.content }}</td>
+              <td>{{ article.summary }}</td>
+              <td>{{ article.author }}</td>
+              <td>{{ article.publishedDate | formatMediumDatetime }}</td>
+              <td>{{ article.read }}</td>
+              <td>{{ article.favorited }}</td>
+              <td>{{ article.tags }}</td>
+              <td>{{ article.coverImageUrl }}</td>
+              <td>{{ article.views }}</td>
+              <td>
+                @if (article.feed) {
+                  <div>
+                    <a [routerLink]="['/feed', article.feed.id, 'view']">{{ article.feed.id }}</a>
+                  </div>
+                }
+              </td>
+              <td class="text-end">
+                <div class="btn-group">
+                  <a [routerLink]="['/article', article.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                    <fa-icon icon="eye"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                  </a>
+
+                  <a [routerLink]="['/article', article.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                    <fa-icon icon="pencil-alt"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                  </a>
+
+                  <button type="submit" (click)="delete(article)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                    <fa-icon icon="times"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+  @if (articles().length > 0) {
+    <div>
+      <div class="d-flex justify-content-center">
+        <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+      </div>
+
+      <div class="d-flex justify-content-center">
+        <ngb-pagination
+          [collectionSize]="totalItems"
+          [page]="page"
+          [pageSize]="itemsPerPage"
+          [maxSize]="5"
+          [rotate]="true"
+          [boundaryLinks]="true"
+          (pageChange)="navigateToPage($event)"
+        ></ngb-pagination>
+      </div>
+    </div>
+  }
+</div>

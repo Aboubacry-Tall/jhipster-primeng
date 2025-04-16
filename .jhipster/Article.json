@@ -1,0 +1,67 @@
+{
+  "annotations": {
+    "changelogDate": "20250416115612"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "title",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "link",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "content",
+      "fieldType": "TextBlob"
+    },
+    {
+      "fieldName": "summary",
+      "fieldType": "TextBlob"
+    },
+    {
+      "fieldName": "author",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "publishedDate",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "read",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "favorited",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "tags",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "coverImageUrl",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "views",
+      "fieldType": "Integer"
+    }
+  ],
+  "name": "Article",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityName": "feed",
+      "otherEntityRelationshipName": "article",
+      "relationshipName": "feed",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceImpl"
+}

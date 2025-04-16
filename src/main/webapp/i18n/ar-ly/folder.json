@@ -1,0 +1,25 @@
+{
+  "webrssApp": {
+    "folder": {
+      "home": {
+        "title": "Folders",
+        "refreshListLabel": "تحديث القائمة",
+        "createLabel": "إنشاء Folder جديد",
+        "createOrEditLabel": "إنشاء أو تعديل Folder",
+        "notFound": "لم يتم العثور على Folders"
+      },
+      "created": "Folder جديد تم إنشاؤه بالمعرف {{ param }}",
+      "updated": "Folder تم تحديثه بالمعرف {{ param }}",
+      "deleted": "Folder تم حذفه بالمعرف {{ param }}",
+      "delete": {
+        "question": "هل أنت متأكد أنك تريد حذف Folder {{ id }}؟"
+      },
+      "detail": {
+        "title": "Folder"
+      },
+      "id": "ID",
+      "name": "Name",
+      "order": "Order"
+    }
+  }
+}

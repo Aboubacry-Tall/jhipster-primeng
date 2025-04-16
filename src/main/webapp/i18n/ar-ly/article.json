@@ -1,0 +1,35 @@
+{
+  "webrssApp": {
+    "article": {
+      "home": {
+        "title": "Articles",
+        "refreshListLabel": "تحديث القائمة",
+        "createLabel": "إنشاء Article جديد",
+        "createOrEditLabel": "إنشاء أو تعديل Article",
+        "notFound": "لم يتم العثور على Articles"
+      },
+      "created": "Article جديد تم إنشاؤه بالمعرف {{ param }}",
+      "updated": "Article تم تحديثه بالمعرف {{ param }}",
+      "deleted": "Article تم حذفه بالمعرف {{ param }}",
+      "delete": {
+        "question": "هل أنت متأكد أنك تريد حذف Article {{ id }}؟"
+      },
+      "detail": {
+        "title": "Article"
+      },
+      "id": "ID",
+      "title": "Title",
+      "link": "Link",
+      "content": "Content",
+      "summary": "Summary",
+      "author": "Author",
+      "publishedDate": "Published Date",
+      "read": "Read",
+      "favorited": "Favorited",
+      "tags": "Tags",
+      "coverImageUrl": "Cover Image Url",
+      "views": "Views",
+      "feed": "Feed"
+    }
+  }
+}

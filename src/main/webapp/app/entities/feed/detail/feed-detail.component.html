@@ -1,0 +1,70 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (feed(); as feedRef) {
+      <div>
+        <h2 data-cy="feedDetailsHeading"><span jhiTranslate="webrssApp.feed.detail.title">Feed</span></h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ feedRef.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="webrssApp.feed.name">Name</span></dt>
+          <dd>
+            <span>{{ feedRef.name }}</span>
+          </dd>
+          <dt><span jhiTranslate="webrssApp.feed.url">Url</span></dt>
+          <dd>
+            <span>{{ feedRef.url }}</span>
+          </dd>
+          <dt><span jhiTranslate="webrssApp.feed.siteName">Site Name</span></dt>
+          <dd>
+            <span>{{ feedRef.siteName }}</span>
+          </dd>
+          <dt><span jhiTranslate="webrssApp.feed.description">Description</span></dt>
+          <dd>
+            <span>{{ feedRef.description }}</span>
+          </dd>
+          <dt><span jhiTranslate="webrssApp.feed.category">Category</span></dt>
+          <dd>
+            <span>{{ feedRef.category }}</span>
+          </dd>
+          <dt><span jhiTranslate="webrssApp.feed.autoDiscovered">Auto Discovered</span></dt>
+          <dd>
+            <span>{{ feedRef.autoDiscovered }}</span>
+          </dd>
+          <dt><span jhiTranslate="webrssApp.feed.faviconUrl">Favicon Url</span></dt>
+          <dd>
+            <span>{{ feedRef.faviconUrl }}</span>
+          </dd>
+          <dt><span jhiTranslate="webrssApp.feed.active">Active</span></dt>
+          <dd>
+            <span>{{ feedRef.active }}</span>
+          </dd>
+          <dt><span jhiTranslate="webrssApp.feed.createdDate">Created Date</span></dt>
+          <dd>
+            <span>{{ feedRef.createdDate | formatMediumDatetime }}</span>
+          </dd>
+          <dt><span jhiTranslate="webrssApp.feed.lastFetchedDate">Last Fetched Date</span></dt>
+          <dd>
+            <span>{{ feedRef.lastFetchedDate | formatMediumDatetime }}</span>
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+        </button>
+
+        <button type="button" [routerLink]="['/feed', feedRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

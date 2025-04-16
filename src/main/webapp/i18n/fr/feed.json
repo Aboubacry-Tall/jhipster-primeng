@@ -1,0 +1,34 @@
+{
+  "webrssApp": {
+    "feed": {
+      "home": {
+        "title": "Feeds",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Feed",
+        "createOrEditLabel": "Créer ou éditer un Feed",
+        "notFound": "Aucun Feed trouvé"
+      },
+      "created": "Un nouveau Feed a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Feed avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Feed avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Êtes-vous certain de vouloir supprimer le Feed {{ id }} ?"
+      },
+      "detail": {
+        "title": "Feed"
+      },
+      "id": "ID",
+      "name": "Name",
+      "url": "Url",
+      "siteName": "Site Name",
+      "description": "Description",
+      "category": "Category",
+      "autoDiscovered": "Auto Discovered",
+      "faviconUrl": "Favicon Url",
+      "active": "Active",
+      "createdDate": "Created Date",
+      "lastFetchedDate": "Last Fetched Date",
+      "article": "Article"
+    }
+  }
+}

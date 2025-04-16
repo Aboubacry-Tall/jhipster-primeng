@@ -1,0 +1,134 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-article-heading" data-cy="ArticleCreateUpdateHeading" jhiTranslate="webrssApp.article.home.createOrEditLabel">
+        Create or edit a Article
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_id" jhiTranslate="webrssApp.article.id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        @let titleRef = editForm.get('title')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_title" jhiTranslate="webrssApp.article.title">Title</label>
+          <input type="text" class="form-control" name="title" id="field_title" data-cy="title" formControlName="title" />
+          @if (titleRef.invalid && (titleRef.dirty || titleRef.touched)) {
+            <div>
+              @if (editForm.get('title')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">This field is required.</small>
+              }
+            </div>
+          }
+        </div>
+
+        @let linkRef = editForm.get('link')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_link" jhiTranslate="webrssApp.article.link">Link</label>
+          <input type="text" class="form-control" name="link" id="field_link" data-cy="link" formControlName="link" />
+          @if (linkRef.invalid && (linkRef.dirty || linkRef.touched)) {
+            <div>
+              @if (editForm.get('link')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">This field is required.</small>
+              }
+            </div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_content" jhiTranslate="webrssApp.article.content">Content</label>
+          <textarea class="form-control" name="content" id="field_content" data-cy="content" formControlName="content"></textarea>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_summary" jhiTranslate="webrssApp.article.summary">Summary</label>
+          <textarea class="form-control" name="summary" id="field_summary" data-cy="summary" formControlName="summary"></textarea>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_author" jhiTranslate="webrssApp.article.author">Author</label>
+          <input type="text" class="form-control" name="author" id="field_author" data-cy="author" formControlName="author" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_publishedDate" jhiTranslate="webrssApp.article.publishedDate">Published Date</label>
+          <div class="d-flex">
+            <input
+              id="field_publishedDate"
+              data-cy="publishedDate"
+              type="datetime-local"
+              class="form-control"
+              name="publishedDate"
+              formControlName="publishedDate"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_read" jhiTranslate="webrssApp.article.read">Read</label>
+          <input type="checkbox" class="form-check" name="read" id="field_read" data-cy="read" formControlName="read" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_favorited" jhiTranslate="webrssApp.article.favorited">Favorited</label>
+          <input type="checkbox" class="form-check" name="favorited" id="field_favorited" data-cy="favorited" formControlName="favorited" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_tags" jhiTranslate="webrssApp.article.tags">Tags</label>
+          <input type="text" class="form-control" name="tags" id="field_tags" data-cy="tags" formControlName="tags" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_coverImageUrl" jhiTranslate="webrssApp.article.coverImageUrl">Cover Image Url</label>
+          <input
+            type="text"
+            class="form-control"
+            name="coverImageUrl"
+            id="field_coverImageUrl"
+            data-cy="coverImageUrl"
+            formControlName="coverImageUrl"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_views" jhiTranslate="webrssApp.article.views">Views</label>
+          <input type="number" class="form-control" name="views" id="field_views" data-cy="views" formControlName="views" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_feed" jhiTranslate="webrssApp.article.feed">Feed</label>
+          <select class="form-control" id="field_feed" data-cy="feed" name="feed" formControlName="feed" [compareWith]="compareFeed">
+            <option [ngValue]="null"></option>
+            @for (feedOption of feedsSharedCollection; track $index) {
+              <option [ngValue]="feedOption">{{ feedOption.id }}</option>
+            }
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

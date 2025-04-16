@@ -1,0 +1,34 @@
+{
+  "webrssApp": {
+    "feed": {
+      "home": {
+        "title": "Feeds",
+        "refreshListLabel": "تحديث القائمة",
+        "createLabel": "إنشاء Feed جديد",
+        "createOrEditLabel": "إنشاء أو تعديل Feed",
+        "notFound": "لم يتم العثور على Feeds"
+      },
+      "created": "Feed جديد تم إنشاؤه بالمعرف {{ param }}",
+      "updated": "Feed تم تحديثه بالمعرف {{ param }}",
+      "deleted": "Feed تم حذفه بالمعرف {{ param }}",
+      "delete": {
+        "question": "هل أنت متأكد أنك تريد حذف Feed {{ id }}؟"
+      },
+      "detail": {
+        "title": "Feed"
+      },
+      "id": "ID",
+      "name": "Name",
+      "url": "Url",
+      "siteName": "Site Name",
+      "description": "Description",
+      "category": "Category",
+      "autoDiscovered": "Auto Discovered",
+      "faviconUrl": "Favicon Url",
+      "active": "Active",
+      "createdDate": "Created Date",
+      "lastFetchedDate": "Last Fetched Date",
+      "article": "Article"
+    }
+  }
+}

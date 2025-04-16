@@ -1,0 +1,143 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-feed-heading" data-cy="FeedCreateUpdateHeading" jhiTranslate="webrssApp.feed.home.createOrEditLabel">
+        Create or edit a Feed
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_id" jhiTranslate="webrssApp.feed.id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        @let nameRef = editForm.get('name')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_name" jhiTranslate="webrssApp.feed.name">Name</label>
+          <input type="text" class="form-control" name="name" id="field_name" data-cy="name" formControlName="name" />
+          @if (nameRef.invalid && (nameRef.dirty || nameRef.touched)) {
+            <div>
+              @if (editForm.get('name')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">This field is required.</small>
+              }
+            </div>
+          }
+        </div>
+
+        @let urlRef = editForm.get('url')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_url" jhiTranslate="webrssApp.feed.url">Url</label>
+          <input type="text" class="form-control" name="url" id="field_url" data-cy="url" formControlName="url" />
+          @if (urlRef.invalid && (urlRef.dirty || urlRef.touched)) {
+            <div>
+              @if (editForm.get('url')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">This field is required.</small>
+              }
+            </div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_siteName" jhiTranslate="webrssApp.feed.siteName">Site Name</label>
+          <input type="text" class="form-control" name="siteName" id="field_siteName" data-cy="siteName" formControlName="siteName" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_description" jhiTranslate="webrssApp.feed.description">Description</label>
+          <input
+            type="text"
+            class="form-control"
+            name="description"
+            id="field_description"
+            data-cy="description"
+            formControlName="description"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_category" jhiTranslate="webrssApp.feed.category">Category</label>
+          <input type="text" class="form-control" name="category" id="field_category" data-cy="category" formControlName="category" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_autoDiscovered" jhiTranslate="webrssApp.feed.autoDiscovered">Auto Discovered</label>
+          <input
+            type="checkbox"
+            class="form-check"
+            name="autoDiscovered"
+            id="field_autoDiscovered"
+            data-cy="autoDiscovered"
+            formControlName="autoDiscovered"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_faviconUrl" jhiTranslate="webrssApp.feed.faviconUrl">Favicon Url</label>
+          <input
+            type="text"
+            class="form-control"
+            name="faviconUrl"
+            id="field_faviconUrl"
+            data-cy="faviconUrl"
+            formControlName="faviconUrl"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_active" jhiTranslate="webrssApp.feed.active">Active</label>
+          <input type="checkbox" class="form-check" name="active" id="field_active" data-cy="active" formControlName="active" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_createdDate" jhiTranslate="webrssApp.feed.createdDate">Created Date</label>
+          <div class="d-flex">
+            <input
+              id="field_createdDate"
+              data-cy="createdDate"
+              type="datetime-local"
+              class="form-control"
+              name="createdDate"
+              formControlName="createdDate"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_lastFetchedDate" jhiTranslate="webrssApp.feed.lastFetchedDate">Last Fetched Date</label>
+          <div class="d-flex">
+            <input
+              id="field_lastFetchedDate"
+              data-cy="lastFetchedDate"
+              type="datetime-local"
+              class="form-control"
+              name="lastFetchedDate"
+              formControlName="lastFetchedDate"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

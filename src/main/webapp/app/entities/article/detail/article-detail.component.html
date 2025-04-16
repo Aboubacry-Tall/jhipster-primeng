@@ -1,0 +1,82 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (article(); as articleRef) {
+      <div>
+        <h2 data-cy="articleDetailsHeading"><span jhiTranslate="webrssApp.article.detail.title">Article</span></h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ articleRef.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="webrssApp.article.title">Title</span></dt>
+          <dd>
+            <span>{{ articleRef.title }}</span>
+          </dd>
+          <dt><span jhiTranslate="webrssApp.article.link">Link</span></dt>
+          <dd>
+            <span>{{ articleRef.link }}</span>
+          </dd>
+          <dt><span jhiTranslate="webrssApp.article.content">Content</span></dt>
+          <dd>
+            <span>{{ articleRef.content }}</span>
+          </dd>
+          <dt><span jhiTranslate="webrssApp.article.summary">Summary</span></dt>
+          <dd>
+            <span>{{ articleRef.summary }}</span>
+          </dd>
+          <dt><span jhiTranslate="webrssApp.article.author">Author</span></dt>
+          <dd>
+            <span>{{ articleRef.author }}</span>
+          </dd>
+          <dt><span jhiTranslate="webrssApp.article.publishedDate">Published Date</span></dt>
+          <dd>
+            <span>{{ articleRef.publishedDate | formatMediumDatetime }}</span>
+          </dd>
+          <dt><span jhiTranslate="webrssApp.article.read">Read</span></dt>
+          <dd>
+            <span>{{ articleRef.read }}</span>
+          </dd>
+          <dt><span jhiTranslate="webrssApp.article.favorited">Favorited</span></dt>
+          <dd>
+            <span>{{ articleRef.favorited }}</span>
+          </dd>
+          <dt><span jhiTranslate="webrssApp.article.tags">Tags</span></dt>
+          <dd>
+            <span>{{ articleRef.tags }}</span>
+          </dd>
+          <dt><span jhiTranslate="webrssApp.article.coverImageUrl">Cover Image Url</span></dt>
+          <dd>
+            <span>{{ articleRef.coverImageUrl }}</span>
+          </dd>
+          <dt><span jhiTranslate="webrssApp.article.views">Views</span></dt>
+          <dd>
+            <span>{{ articleRef.views }}</span>
+          </dd>
+          <dt><span jhiTranslate="webrssApp.article.feed">Feed</span></dt>
+          <dd>
+            @if (article()!.feed) {
+              <div>
+                <a [routerLink]="['/feed', article()!.feed?.id, 'view']">{{ articleRef.feed?.id }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+        </button>
+
+        <button type="button" [routerLink]="['/article', articleRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>
